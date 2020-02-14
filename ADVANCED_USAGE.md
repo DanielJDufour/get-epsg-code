@@ -20,4 +20,4 @@ You can require a specific build with the following code:
 const getEPSGCode = require('get-epsg-code/dist/get-epsg-code-excluding-mapfile-mapnik.node.min.js');
 ```
 
-You can find a list of all of the builds and their file size at [BUILDS.md](BUILDS.md)
+You can find a list of all of the builds and their file size at [BUILDS.md](https://github.com/DanielJDufour/get-epsg-code/blob/master/BUILDS.md)

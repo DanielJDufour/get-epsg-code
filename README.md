@@ -21,7 +21,7 @@ Take a CSV of Coordinate Reference System formats, hash the columns and stores t
 This package goes only one way. It only gets EPSG codes for a given input. It cannot provide coordinate information for an EPSG code.
 
 # advanced usage
-For advanced usage, see [ADVANCED_USAGE.md](ADVANCED_USAGE.md)
+For advanced usage, see [ADVANCED_USAGE.md](https://github.com/DanielJDufour/get-epsg-code/blob/master/ADVANCED_USAGE.md)
 
 # contact
 Post an issue at https://github.com/danieljdufour/get-epsg-code/issues or email the package author at daniel.j.dufour@gmail.com
