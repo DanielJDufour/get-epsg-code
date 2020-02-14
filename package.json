@@ -1,0 +1,63 @@
+{
+  "name": "get-epsg-code",
+  "version": "0.0.0",
+  "description": "Gets EPSG Code for Various Inputs (incl. OGC WKT, ESRI WKT, GML, Mapfile, PROJ String, Proj4js String, XML)",
+  "main": "dist/get-epsg-code-all.node.min.js",
+  "scripts": {
+    "analyze": "node analyze.js",
+    "build": "npm run build:node && npm run build:web",
+    "build:web": "webpack --mode production --target web",
+    "build:node": "webpack --mode production --target node",
+    "build:everything": "rm -r dist && npm run build && HASHED_FIELDS='' npm run build && HASHED_FIELDS='esriwkt' npm run build && HASHED_FIELDS='esriwkt,proj4' npm run build",
+    "create": "node create.js",
+    "serve": "http-server",
+    "setup": "cd test/data && bash setup.sh",
+    "test": "npm run build:node && node ./node_modules/.bin/mocha --reporter spec",
+    "test:manual": "npm run build:web && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieljdufour/get-epsg-code.git"
+  },
+  "keywords": [
+    "epsg",
+    "gis",
+    "map",
+    "ogc",
+    "wkt",
+    "esri",
+    "proj",
+    "proj4",
+    "proj4js",
+    "crs",
+    "geodesy",
+    "projcrs",
+    "geogcrs",
+    "geocrs"
+  ],
+  "author": "Daniel J. Dufour",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/danieljdufour/get-epsg-code/issues"
+  },
+  "homepage": "https://github.com/danieljdufour/get-epsg-code#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "file-loader": "^5.0.2",
+    "gunzip": "^1.2.2",
+    "jquery-csv": "^1.0.8",
+    "mocha": "^7.0.1",
+    "pako": "^1.0.11",
+    "papaparse": "^5.1.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "arraybuffer-loader": "^1.0.8",
+    "wkt-parser": "^1.2.3",
+    "xml-utils": "0.0.2"
+  }
+}

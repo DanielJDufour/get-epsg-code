@@ -102,3 +102,17 @@ dist
 
 # TernJS port file
 .tern-port
+
+*.csv
+*.dat
+*.esriwkt
+*.geoserver
+*.gml
+*.mapfile
+*.mapnik
+*.postgis
+*.proj4
+test/data/*.js
+*.wkt
+*.xml
+
