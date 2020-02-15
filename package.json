@@ -17,6 +17,7 @@
     "create": "node create.js",
     "create-build-list": "bash create-build-list.sh",
     "demo": "npm run build:demo && cd demo && http-server",
+    "download-csv": "wget https://s3.amazonaws.com/crs.csv/crs.csv.zip && unzip crs.csv.zip",
     "prepublish": "npm run test && npm run build:everything && npm run create-build-list",
     "setup": "cd test/data && bash setup.sh",
     "test": "npm run build:node && node ./node_modules/.bin/mocha --reporter spec"

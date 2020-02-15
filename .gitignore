@@ -117,3 +117,4 @@ test/data/*.js
 *.xml
 
 *.min.js
+*.zip
