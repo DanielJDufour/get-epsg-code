@@ -116,3 +116,4 @@ test/data/*.js
 *.wkt
 *.xml
 
+*.min.js
