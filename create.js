@@ -1,5 +1,6 @@
 const { readFileSync, writeFileSync } = require('fs');
 const { parse } = require('papaparse');
+const { isUTM } = require('utm-utils');
 const { hash } = require('./utils.js');
 const {
     ARRAY_TYPE,
@@ -10,7 +11,13 @@ const {
 
 const string = readFileSync('./crs.csv', 'utf-8');
 const parsed = parse(string, { header: true, skipEmptyLines: true });
-const rows = parsed.data;
+let rows = parsed.data;
+
+// filter out UTM which is calculated by pulling out info from input data
+console.log("rows before filtering out UTM:", rows.length);
+rows = rows.filter(({ code }) => !isUTM(code));
+console.log("rows after filtering out UTM:", rows.length);
+
 console.log("parsed.meta:", parsed.meta);
 const num_rows = rows.length;
 console.log("num_rows:", num_rows);

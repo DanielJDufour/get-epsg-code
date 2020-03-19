@@ -1,5 +1,8 @@
 const findTagByPath = require('xml-utils/src/find-tag-by-path');
 const parseWKT = require('wkt-parser').default;
+const isUTM = require('utm-utils/src/isUTM');
+const findTagByName = require('xml-utils/src/find-tag-by-name');
+const getAttribute = require('xml-utils/src/get-attribute');
 const {
   ARRAY_TYPE,
   BYTES_PER_VALUE,
@@ -98,22 +101,48 @@ function getEPSGCode(input, options) {
       return Number(authority.epsg || authority.EPSG);
     }
   } else if (dataType == "ESRI WKT") {
-    return lookup(input, "esriwkt", true);
+    const parsed = parseWKT(input);
+    if (debug) console.log("parsed:", parsed);
+    if (parsed.name.match(/^WGS_1984_UTM_Zone_\d{1,2}(N|S)$/)) {
+      const last_part = parsed.name.split("_").pop();
+      const zone = last_part.substring(0, last_part.length - 1);
+      const hemisphere = last_part.substr(-1) == 'N' ? 6 : 7;
+      return Number.parseInt('32' + hemisphere + zone);
+    } else {
+      return lookup(input, "esriwkt", false);
+    }
   } else if (dataType === "GML") {
     const identifier = findTagByPath(input, ["gml:identifier"], { debug }).inner;
     return Number(identifier.replace("urn:ogc:def:crs:EPSG::", ""));
   } else if (dataType === "XML") {
     return Number(findTagByPath(input, ["gml:srsID", "gml:name"], { debug }).inner);
   } else if (dataType === "Proj.4") {
-    return lookup(input, "proj4");
+    if (input.startsWith('+proj=utm')) {
+      const parts = input.split(" ");
+      const zone = parts.find(part => part.startsWith('+zone=')).split("=")[1];
+      const hemisphere = input.includes('+south') ? '7' : '6';
+      return Number.parseInt('32' + hemisphere + zone);
+    } else {
+      return lookup(input, "proj4");
+    }
   } else if (dataType === "proj4js") {
     return Number(input.substring(17, input.indexOf(`"`, 17)));
   } else if (dataType === "GeoServer") {
     return Number(input.match(/^\d{1,6}/)[0]);
   } else if (dataType === "MapServer") {
-    return lookup(input, "mapfile");
+    if (input.includes('init=epsg:')) {
+      return Number.parseInt(/(?<="init\=epsg:)(\d{1,10})(?=")/.exec(input)[0]);
+    } else if (input.includes('"proj=utm"')) {
+      const zone = /(?<="zone\=)(\d{1,2})(?=")/.exec(input)[0];
+      const hemisphere = input.includes('"south"') ? '7' : '6';
+      return Number.parseInt('32' + hemisphere + zone);
+    } else {
+      return lookup(input, "mapfile");
+    }
   } else if (dataType === "Mapnik") {
-    return lookup(input, "mapnik");
+    const map = findTagByName(input, 'Map');
+    const srs = getAttribute(map.outer, 'srs'); // Proj.4 String
+    return getEPSGCode(srs);
   } else if (dataType === "PostGIS") {
     return Number(input.substring(input.indexOf("values (") + 8, input.indexOf("EPSG") - 3).trim());
   }

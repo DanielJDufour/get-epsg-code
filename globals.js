@@ -1,9 +1,11 @@
+const DEFAULT_HASHED_FIELDS = ['esriwkt', 'mapfile', 'proj4'];
+
 let HASHED_FIELDS;
 
 if (typeof process !== "undefined" && process.env && process.env.HASHED_FIELDS) {
   HASHED_FIELDS = process.env.HASHED_FIELDS.split(',').map(str => str.trim());
 } else {
-  HASHED_FIELDS = ['esriwkt', 'mapfile', 'mapnik', 'proj4'];
+  HASHED_FIELDS = DEFAULT_HASHED_FIELDS;
 }
 console.log("HASHED_FIELDS set to:", HASHED_FIELDS);
 
@@ -17,6 +19,7 @@ module.exports = {
   ARRAY_TYPE,
   DATA_VIEW_READER_NAME,
   BYTES_PER_VALUE,
+  DEFAULT_HASHED_FIELDS,
   HASHED_FIELDS,
   NUM_HASHED_FIELDS,
   NUM_FIELDS
