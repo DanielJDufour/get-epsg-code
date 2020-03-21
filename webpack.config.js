@@ -1,8 +1,38 @@
 const path = require('path');
-const { DEFAULT_HASHED_FIELDS, HASHED_FIELDS } = require('./globals.js');
+const { EnvironmentPlugin } = require('webpack');
+const {
+  DEFAULT_HASHED_FIELDS,
+  EXCLUDED_FORMATS,
+  HASHED_FIELDS
+} = require('./globals.js');
 
 // executes create.js
 require('./create.js');
+
+const rules = [
+  {
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ["@babel/preset-env"],
+        plugins: ["@babel/plugin-proposal-optional-chaining"]
+      },
+    },
+  },
+  {
+    test: /\.dat$/,
+    loaders: ['arraybuffer-loader'],
+  },  
+];
+
+if (EXCLUDED_FORMATS.includes('mapnik')) {
+  rules.unshift({
+    test: path.resolve(__dirname, 'node_modules/xml-utils/src/get-attribute.js'),
+    use: 'null-loader'
+  });
+}
 
 module.exports = (env, argv) => {
   console.log('mode:', argv.mode);
@@ -12,14 +42,7 @@ module.exports = (env, argv) => {
   if (HASHED_FIELDS.length === DEFAULT_HASHED_FIELDS.length) {
     part = 'all';
   } else {
-    const excludedFields = [];
-    if (!HASHED_FIELDS.includes('esriwkt')) excludedFields.push('esriwkt');
-    if (!HASHED_FIELDS.includes('mapfile')) excludedFields.push('mapfile');
-    if (!HASHED_FIELDS.includes('proj4')) {
-      excludedFields.push('mapnik'); // mapnik parsing depends on proj4
-      excludedFields.push('proj4');
-    }
-    part = 'excluding-' + excludedFields.join('-');
+    part = 'excluding-' + EXCLUDED_FORMATS.join('-');
   }
   return {
     entry: './src/index.js',
@@ -33,26 +56,17 @@ module.exports = (env, argv) => {
       library: 'get-epsg-code',
       libraryTarget: 'umd',
     },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /(node_modules)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ["@babel/preset-env"],
-              plugins: []
-            },
-          },
-        },
-        {
-          test: /\.dat$/,
-          loaders: ['arraybuffer-loader'],
-        },
-      ],
+    module: { rules },
+    node: {
+      // makes sure that arraybuffer-loader doesn't include Buffer polyfill in web version of builds      
+      'Buffer': false
     },
-    node: {},
-    externals: {}
+    externals: {},
+    plugins: [
+      new EnvironmentPlugin([
+        'EXCLUDED_FORMATS',
+        'HASHED_FIELDS'
+      ])
+    ]
   };
 };

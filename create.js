@@ -29,7 +29,7 @@ console.log("num_values:", num_values);
 //const dataView = new DataView(output);
 
 const codes = rows.map(row => row['code']);
-console.log("codes:", codes);
+console.log("codes:", JSON.stringify(codes.slice(0, 5)), "...");
 const min = Math.min(...codes);
 console.log("min:", min);
 const max = Math.max(...codes);
@@ -46,8 +46,12 @@ rows.forEach((row, index) => {
         output_combined[rowStart + 1 + hashed_field_index] = hash(row[hashed_field]);
     });
 });
-console.log("output_combined:", output_combined);
+console.log("output_combined:", JSON.stringify(output_combined.slice(0, 5)), "...");
 
 console.log("output buffer:", output_combined.buffer);
 console.log("first value before writing:", output_combined[0]);
-writeFileSync('crs.dat', new Buffer(output_combined.buffer));
+
+const output_buffer = new Buffer(output_combined.buffer);
+writeFileSync('crs.dat', output_buffer);
+
+//writeFileSync('crs-b64.js', `module.exports = "${output_buffer.toString('base64')}";`, "utf-8");
