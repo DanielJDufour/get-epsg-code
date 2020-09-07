@@ -8,4 +8,4 @@ echo '| name | file size |' >> BUILDS.md
 
 echo '| ---- | --------- |' >> BUILDS.md
 
-ls dist -alsh | grep 'get-epsg-code' |  awk 'BEGIN { OFS = " | " }{ print "| "$10,$1" |" }' | grep '.js ' >> BUILDS.md
+ls -alsh dist | grep 'get-epsg-code' |  awk 'BEGIN { OFS = " | " }{ print "| "$10,$1" |" }' | grep '.js ' >> BUILDS.md

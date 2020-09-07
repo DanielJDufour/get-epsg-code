@@ -2,6 +2,7 @@ const { readFileSync, writeFileSync } = require('fs');
 const { parse } = require('papaparse');
 const { isUTM } = require('utm-utils');
 const { hash } = require('./utils.js');
+const clean_esriwkt = require('./clean-esriwkt');
 const {
     ARRAY_TYPE,
     HASHED_FIELDS,
@@ -17,6 +18,8 @@ let rows = parsed.data;
 console.log("rows before filtering out UTM:", rows.length);
 rows = rows.filter(({ code }) => !isUTM(code));
 console.log("rows after filtering out UTM:", rows.length);
+
+rows.forEach(row => row.esriwkt = clean_esriwkt(row.esriwkt));
 
 console.log("parsed.meta:", parsed.meta);
 const num_rows = rows.length;
@@ -51,7 +54,7 @@ console.log("output_combined:", JSON.stringify(output_combined.slice(0, 5)), "..
 console.log("output buffer:", output_combined.buffer);
 console.log("first value before writing:", output_combined[0]);
 
-const output_buffer = new Buffer(output_combined.buffer);
+const output_buffer = Buffer.from(output_combined.buffer);
 writeFileSync('crs.dat', output_buffer);
 
 //writeFileSync('crs-b64.js', `module.exports = "${output_buffer.toString('base64')}";`, "utf-8");

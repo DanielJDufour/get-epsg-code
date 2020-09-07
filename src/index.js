@@ -2,6 +2,7 @@ const findTagByPath = require('xml-utils/src/find-tag-by-path');
 const findTagByName = require('xml-utils/src/find-tag-by-name');
 const getAttribute = require('xml-utils/src/get-attribute');
 const parseWKT = require('wkt-parser').default;
+const clean_esriwkt = require('../clean-esriwkt');
 
 const {
   ARRAY_TYPE,
@@ -127,6 +128,9 @@ function getEPSGCode(input, options) {
       const hemisphere = last_part.substr(-1) == 'N' ? 6 : 7;
       return Number.parseInt('32' + hemisphere + zone);
     } else {
+
+      input = clean_esriwkt(input);
+
       return lookup(input, ESRI_WKT, false);
     }
   } else if (dataType === OGC_GML) {
