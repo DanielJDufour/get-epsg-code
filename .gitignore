@@ -108,10 +108,12 @@ dist
 *.esriwkt
 *.geoserver
 *.gml
+*.gz
 *.mapfile
 *.mapnik
 *.postgis
 *.proj4
+*.txt
 test/data/*.js
 *.wkt
 *.xml
