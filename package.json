@@ -3,7 +3,22 @@
   "version": "0.0.6",
   "description": "Gets EPSG Code for Various Inputs (incl. OGC WKT, ESRI WKT, GML, Mapfile, PROJ String, Proj4js String, XML)",
   "files": [
-    "./dist/"
+    "dist/get-epsg-code-all.node.min.js",
+    "dist/get-epsg-code-all.node.min.js.map",
+    "dist/get-epsg-code-all.web.min.js",
+    "dist/get-epsg-code-all.web.min.js.map",
+    "dist/get-epsg-code-excluding-gml-mapfile-mapnik-proj4-xml.node.min.js",
+    "dist/get-epsg-code-excluding-gml-mapfile-mapnik-proj4-xml.node.min.js.map",
+    "dist/get-epsg-code-excluding-gml-mapfile-mapnik-proj4-xml.web.min.js",
+    "dist/get-epsg-code-excluding-gml-mapfile-mapnik-proj4-xml.web.min.js.map",
+    "dist/get-epsg-code-excluding-mapfile-mapnik-proj4.node.min.js",
+    "dist/get-epsg-code-excluding-mapfile-mapnik-proj4.node.min.js.map",
+    "dist/get-epsg-code-excluding-mapfile-mapnik-proj4.web.min.js",
+    "dist/get-epsg-code-excluding-mapfile-mapnik-proj4.web.min.js.map",
+    "dist/get-epsg-code-excluding-mapfile.node.min.js",
+    "dist/get-epsg-code-excluding-mapfile.node.min.js.map",
+    "dist/get-epsg-code-excluding-mapfile.web.min.js",
+    "dist/get-epsg-code-excluding-mapfile.web.min.js.map"
   ],
   "main": "./dist/get-epsg-code-all.node.min.js",
   "browser": {
