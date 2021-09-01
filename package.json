@@ -1,6 +1,6 @@
 {
   "name": "get-epsg-code",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Gets EPSG Code for Various Inputs (incl. OGC WKT, ESRI WKT, GML, Mapfile, PROJ String, Proj4js String, XML)",
   "files": [
     "./dist/"
