@@ -15,6 +15,7 @@
     "build": "npm run build:node && npm run build:web",
     "build:demo": "npm run build:web && cp dist/get-epsg-code-all.web.min.js demo/.",
     "build:web": "webpack --mode production --target web",
+    "build:web:dev": "webpack --mode development --target web",
     "build:node": "webpack --mode production --target node",
     "build:everything": "if [ -d dist ]; then rm -Rf dist; fi && HASHED_FIELDS='' EXCLUDED_FORMATS='' npm run build && HASHED_FIELDS='esriwkt' EXCLUDED_FORMATS='' npm run build && HASHED_FIELDS='esriwkt,proj4' EXCLUDED_FORMATS='' npm run build && EXCLUDED_FORMATS='gml,xml' HASHED_FIELDS='esriwkt' npm run build && npm run create-build-list",
     "build:everything:node": "if [ -d dist ]; then rm -Rf dist; fi &&  HASHED_FIELDS='' EXCLUDED_FORMATS='' npm run build:node && HASHED_FIELDS='' EXCLUDED_FORMATS='' npm run build:node && HASHED_FIELDS='esriwkt' EXCLUDED_FORMATS='' npm run build:node && HASHED_FIELDS='esriwkt,proj4' EXCLUDED_FORMATS='' npm run build:node && EXCLUDED_FORMATS='gml,xml' HASHED_FIELDS='esriwkt' npm run build:node",
@@ -24,6 +25,7 @@
     "download-csv": "wget https://s3.amazonaws.com/crs.csv/crs.csv.zip && unzip crs.csv.zip",
     "setup": "cd test/data && bash setup.sh",
     "test": "npm run build:node && TEST_BUNDLE='get-epsg-code-all.node.min.js' node ./test/test.js",
+    "test:html": "npm run build:web:dev && http-server",
     "test:quick": "TEST_BUNDLE=$TEST_BUNDLE node ./test/test.js",
     "test:everything:node": "set -e; npm run build:everything:node && TEST_BUNDLES=\"$(ls ./dist | grep node.min.js$)\"; for TEST_BUNDLE in $TEST_BUNDLES; do echo \"TEST_BUNDLE: $TEST_BUNDLE\" && TEST_BUNDLE=$TEST_BUNDLE npm run test:quick; done",
     "update-docs": "npm run test && npm run build:everything && npm run create-build-list"

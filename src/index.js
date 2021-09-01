@@ -153,9 +153,9 @@ function getEPSGCode(input, options) {
     return Number(input.match(/^\d{1,6}/)[0]);
   } else if (dataType === MAPFILE) {
     if (input.includes('init=epsg:')) {
-      return Number.parseInt(/(?<="init\=epsg:)(\d{1,10})(?=")/.exec(input)[0]);
+      return Number.parseInt(/("init\=epsg:)(\d{1,10})(")/.exec(input)[2]);
     } else if (input.includes('"proj=utm"')) {
-      const zone = /(?<="zone\=)(\d{1,2})(?=")/.exec(input)[0];
+      const zone = /("zone\=)(\d{1,2})(")/.exec(input)[2];
       const hemisphere = input.includes('"south"') ? '7' : '6';
       return Number.parseInt('32' + hemisphere + zone);
     } else {
