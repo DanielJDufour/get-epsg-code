@@ -1,6 +1,6 @@
-const findTagByPath = require('xml-utils/src/find-tag-by-path');
-const findTagByName = require('xml-utils/src/find-tag-by-name');
-const getAttribute = require('xml-utils/src/get-attribute');
+const findTagByPath = require('xml-utils/find-tag-by-path');
+const findTagByName = require('xml-utils/find-tag-by-name');
+const getAttribute = require('xml-utils/get-attribute');
 const parseWKT = require('wkt-parser').default;
 const clean_esriwkt = require('../clean-esriwkt');
 
@@ -127,6 +127,10 @@ function getEPSGCode(input, options) {
       const zone = last_part.substring(0, last_part.length - 1);
       const hemisphere = last_part.substr(-1) == 'N' ? 6 : 7;
       return Number.parseInt('32' + hemisphere + zone);
+    } else if (parsed.name.match(/^NAD_1983_UTM_Zone_\d{1,2}N$/)) {
+      const last_part = parsed.name.split("_").pop();
+      const zone = last_part.substring(0, last_part.length - 1);
+      return Number.parseInt('269' + zone);
     } else {
 
       input = clean_esriwkt(input);
@@ -142,8 +146,15 @@ function getEPSGCode(input, options) {
     if (input.startsWith('+proj=utm')) {
       const parts = input.split(" ");
       const zone = parts.find(part => part.startsWith('+zone=')).split("=")[1];
-      const hemisphere = input.includes('+south') ? '7' : '6';
-      return Number.parseInt('32' + hemisphere + zone);
+      const south = input.includes('+south');
+      const ellps = parts.find(part => part.startsWith('+ellps='))?.split("=")[1];
+
+      if (ellps === "GRS80" && south === false) {
+        return Number.parseInt('269' + zone);
+      } else {
+        const hemisphere = south ? '7' : '6';
+        return Number.parseInt('32' + hemisphere + zone);
+      }
     } else {
       return lookup(input, PROJ_4);
     }
@@ -156,8 +167,13 @@ function getEPSGCode(input, options) {
       return Number.parseInt(/("init\=epsg:)(\d{1,10})(")/.exec(input)[2]);
     } else if (input.includes('"proj=utm"')) {
       const zone = /("zone\=)(\d{1,2})(")/.exec(input)[2];
-      const hemisphere = input.includes('"south"') ? '7' : '6';
-      return Number.parseInt('32' + hemisphere + zone);
+      const south = input.includes('"south"');
+      if (input.includes("ellps=GRS80") && south === false) {
+        return Number.parseInt('269' + zone);
+      } else {
+        const hemisphere = south ? '7' : '6';
+        return Number.parseInt('32' + hemisphere + zone);
+      }
     } else {
       return lookup(input, MAPFILE);
     }

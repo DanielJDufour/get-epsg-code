@@ -120,3 +120,4 @@ test/data/*.js
 
 *.min.js
 *.zip
+pnpm-lock.yaml
