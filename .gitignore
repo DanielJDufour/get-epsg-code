@@ -123,3 +123,4 @@ test/data/*.js
 *.zip
 pnpm-lock.yaml
 .parcel-cache
+log
