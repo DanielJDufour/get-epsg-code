@@ -3,10 +3,8 @@
   "version": "0.1.0",
   "description": "Gets EPSG Code for Various Inputs (incl. OGC WKT, ESRI WKT, GML, Mapfile, PROJ String, Proj4js String, XML)",
   "files": [
-    "dist/get-epsg-code-all.node.min.js",
-    "dist/get-epsg-code-all.node.min.js.map",
-    "dist/get-epsg-code-all.web.min.js",
-    "dist/get-epsg-code-all.web.min.js.map"
+    "dist",
+    "lib"
   ],
   "main": "./dist/get-epsg-code-all.node.min.js",
   "browser": {
