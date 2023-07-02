@@ -24,7 +24,7 @@
     "build:dev": "npm run build:dev:node && npm run build:dev:web",
     "build:dev:node": "esbuild ./lib/lookup-esriwkt-mapfile-proj4.js --bundle --outfile=./dist/get-epsg-code.node.js --platform=node",
     "build:dev:web": "esbuild ./lib/lookup-esriwkt-mapfile-proj4.js --bundle --outfile=./dist/get-epsg-code.web.js",
-    "prebuild": "node prebuild",
+    "prebuild": "node prebuild.js",
     "clean": "rimraf dist/* && rimraf lib/*",
     "create-build-list": "bash create-build-list.sh",
     "demo": "npm run build:demo && cd demo && npx srvd --debug",
