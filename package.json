@@ -65,15 +65,11 @@
   },
   "homepage": "https://github.com/danieljdufour/get-epsg-code#readme",
   "devDependencies": {
-    "envisage": "^0.1.0",
     "esbuild": "^0.18.11",
     "find-and-read": "^1.2.0",
     "flug": "^2.6.0",
-    "jquery-csv": "^1.0.21",
     "papaparse": "^5.4.1",
-    "parcel": "^2.9.3",
-    "rimraf": "^5.0.1",
-    "rollup": "^3.26.0"
+    "rimraf": "^5.0.1"
   },
   "dependencies": {
     "b64ab": "^0.0.1",
