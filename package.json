@@ -6,12 +6,12 @@
     "dist",
     "lib"
   ],
-  "main": "./dist/get-epsg-code-all.node.min.js",
+  "main": "./dist/get-epsg-code.node.min.js",
   "browser": {
-    "dist/get-epsg-code-all.web.min.js": "dist/get-epsg-code-all.web.min.js"
+    "dist/get-epsg-code.web.min.js": "dist/get-epsg-code.web.min.js"
   },
-  "unpkg": "./dist/get-epsg-code-all.web.min.js",
-  "jsdelivr": "./dist/get-epsg-code-all.web.min.js",
+  "unpkg": "./dist/get-epsg-code.web.min.js",
+  "jsdelivr": "./dist/get-epsg-code.web.min.js",
   "scripts": {
     "analyze": "node analyze.js",
     "build": "npm run prebuild && npm run build:dev && npm run build:prod && npm run analyze",
