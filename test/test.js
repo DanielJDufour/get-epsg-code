@@ -1,57 +1,66 @@
-const test = require('flug');
-const { readdirSync, readFileSync } = require('fs');
+const test = require("flug");
+const { readdirSync, readFileSync } = require("fs");
+const findAndRead = require("find-and-read");
+const readTestData = fp => findAndRead(fp, { encoding: "utf-8" });
 
-const { UNSUPPORTED_MSG } = require('../globals.js');
+const TEST_CASE = "esriwkt-mapfile-proj4";
 
-const TEST_BUNDLE = process.env.TEST_BUNDLE || "get-epsg-code-all.node.min.js";
-const getEPSGCode = require(`../dist/${TEST_BUNDLE}`);
+const { getEPSGCode, getEPSGCodes } = require(`../lib/lookup-esriwkt-mapfile-proj4.js`);
 
 const DEBUG = process.env.DEBUG || false;
+
+test("Throw error when unsupported", ({ eq }) => {
+  const esriwkt = readTestData("3857.esriwkt");
+  let msg;
+  try {
+    require(`../lib/lookup-proj4.js`)(esriwkt, { debug: true });
+  } catch (error) {
+    msg = error.message;
+  }
+  eq(msg, "[get-epsg-code] esriwkt not supported");
+});
 
 test("Should identify MapServer mapfile with init", ({ eq }) => {
   try {
     const input = `PROJECTION\n   "init=epsg:26915"\nEND`;
     const actualCode = getEPSGCode(input, { debug: DEBUG });
-    eq(actualCode, 26915);  
+    eq(actualCode, 26915);
   } catch (error) {
-    if (!TEST_BUNDLE.includes('mapfile')) {
+    if (!TEST_CASE.includes("mapfile")) {
       console.error(error);
       process.exit(1);
     }
   }
 });
 
-
 test("Should identify all files correctly", ({ eq }) => {
-  const files = readdirSync('test/data').filter(fn => !fn.endsWith('.sh'));
-  console.log('files:', files);
+  const files = readdirSync("test/data").filter(fn => !fn.endsWith(".sh"));
+  console.log("files: " + files.join(", "));
   files.forEach(filename => {
-    if (filename.startsWith('32149')) return;
-    const dataType = filename.split('.').pop();
-    const expectedCode = Number(filename.split('.')[0]);
+    if (filename.startsWith("32149")) return;
+    const dataType = filename.split(".").pop();
+    const expectedCode = Number(filename.split(".")[0]);
     const filepath = `test/data/${filename}`;
-    const text = readFileSync(filepath, 'utf-8');
-    if (text.trim() !== '') {
-      let actualCode;
+    const text = readFileSync(filepath, "utf-8");
+    if (text.trim() !== "") {
+      let actualCodes, actualDataType;
       try {
-        actualCode = getEPSGCode(text, { debug: DEBUG });
-        eq(actualCode, expectedCode);
+        ({ type: actualDataType, codes: actualCodes } = getEPSGCodes(text, {
+          debug: DEBUG
+        }));
+        eq(actualCodes.includes(expectedCode), true);
       } catch (error) {
-        if (TEST_BUNDLE.includes(dataType.toLowerCase())) {
-          if (!error.message.toLowerCase() === UNSUPPORTED_MSG.replace('{}', dataType)) {
-            throw error;
-          }
-        } else {
-          console.log("================START ERROR LOGGING================");
-          console.log("TEST_BUNDLE:", [TEST_BUNDLE]);
-          console.log("dataType:", [dataType]);
-          console.log("error.message:", error);
-          console.log("expectedCode:", [expectedCode]);
-          console.error("actualCode:", [actualCode]);
-          console.log("================END ERROR LOGGING================");
-          process.exit(1);
-          //throw new Error(`Failed to get EPSG Code for ${filename}.`);
-        }
+        getEPSGCodes(text, { debug: true });
+        console.log("================START ERROR LOGGING================");
+        console.log("TEST_CASE:", [TEST_CASE]);
+        console.log("dataType:", [dataType]);
+        console.log("actualDataType:", [actualDataType]);
+        console.log("text:", [text]);
+        console.log("expectedCode:", [expectedCode]);
+        console.error("actualCodes:", actualCodes);
+        console.log("error.message:", error);
+        console.log("================END ERROR LOGGING================");
+        process.exit(1);
       }
     }
   });

@@ -1,4 +1,4 @@
-function hash(string) {
+function hash32(string) {
   // sometimes might have extra space at end from epsg.io
   string = string.trim();
 
@@ -11,14 +11,9 @@ function hash(string) {
   // remove any extra spaces
   string = string.replace(/ +/g, " ");
 
-  if (string[0] === "+") {
-    // if proj4, sort keys
-    string = string.split(" ").sort().join(" ");
-  }
-
-  let hash = 0,
-    i,
-    chr;
+  let hash = 0;
+  let i;
+  let chr;
   if (string.length === 0) return hash;
   const string_length = string.length;
   for (i = 0; i < string_length; i++) {
@@ -28,10 +23,10 @@ function hash(string) {
   }
 
   // convert to 16-bit
-  hash = Math.round(hash / Math.pow(2, 16));
+  // hash = Math.round(hash / Math.pow(2, 16));
 
   return hash;
 }
 
-module.exports = hash;
-module.exports.default = hash;
+module.exports = hash32;
+module.exports.default = hash32;
