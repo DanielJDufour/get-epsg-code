@@ -17,7 +17,7 @@
         const result = getEPSGCodes(textValue, { debug: true });
         console.log("codes:", result?.codes);
         document.getElementById("result-data-type").textContent = result?.type || "";
-        document.getElementById("result-text").textContent = result.codes?.join(",") || "";
+        document.getElementById("result-text").textContent = result?.codes?.join(",") || "";
       });
     </script>
     <h3>Found a Bug? Awesome! Please create an issue at <a href="https://github.com/danieljdufour/get-epsg-code/issues">https://github.com/danieljdufour/get-epsg-code/issues</a> or email the project author at daniel.j.dufour@gmail.com</h3>
