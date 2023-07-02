@@ -1,6 +1,6 @@
 const isWKT = require("is-wkt");
 
-const { FORMATS } = require("../enums.js");
+const { FORMATS } = require("./enums.js");
 
 const { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJ_4, PROJ_4_JS, PROJJSON } = FORMATS;
 
