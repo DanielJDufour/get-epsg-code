@@ -1,11 +1,11 @@
 # Builds
 | name | file size |
 | ---- | --------- |
-| get-epsg-code-all.node.min.js | 63K |
-| get-epsg-code-all.web.min.js | 65K |
-| get-epsg-code-excluding-gml-mapfile-mapnik-proj4-xml.node.min.js | 39K |
-| get-epsg-code-excluding-gml-mapfile-mapnik-proj4-xml.web.min.js | 41K |
-| get-epsg-code-excluding-mapfile-mapnik-proj4.node.min.js | 39K |
-| get-epsg-code-excluding-mapfile-mapnik-proj4.web.min.js | 41K |
-| get-epsg-code-excluding-mapfile.node.min.js | 51K |
-| get-epsg-code-excluding-mapfile.web.min.js | 53K |
+| get-epsg-code-including-esriwkt-proj.node.min.js | 94K |
+| get-epsg-code-including-esriwkt-proj.web.min.js | 94K |
+| get-epsg-code-including-esriwkt-proj4.node.min.js | 94K |
+| get-epsg-code-including-esriwkt-proj4.web.min.js | 94K |
+| get-epsg-code.node.js | 142K |
+| get-epsg-code.node.min.js | 118K |
+| get-epsg-code.web.js | 145K |
+| get-epsg-code.web.min.js | 118K |

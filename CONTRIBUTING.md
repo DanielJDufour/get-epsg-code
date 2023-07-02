@@ -21,5 +21,5 @@ npm run setup
 
 # Build the Compressed Data File
 ```bash
-npm run create
+npm run prebuild
 ```

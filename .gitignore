@@ -103,6 +103,7 @@ dist
 # TernJS port file
 .tern-port
 
+lib
 *.csv
 *.dat
 *.esriwkt
@@ -121,3 +122,6 @@ test/data/*.js
 *.min.js
 *.zip
 pnpm-lock.yaml
+.parcel-cache
+log
+*bak*
