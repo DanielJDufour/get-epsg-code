@@ -4,9 +4,9 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // node_modules/.pnpm/b64ab@0.0.1/node_modules/b64ab/b64ab.js
+  // node_modules/b64ab/b64ab.js
   var require_b64ab = __commonJS({
-    "node_modules/.pnpm/b64ab@0.0.1/node_modules/b64ab/b64ab.js"(exports, module) {
+    "node_modules/b64ab/b64ab.js"(exports, module) {
       var b64ab = {};
       b64ab.char2bits = {
         0: "110100",
@@ -140,9 +140,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/index-of-match.js
+  // node_modules/xml-utils/index-of-match.js
   var require_index_of_match = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/index-of-match.js"(exports, module) {
+    "node_modules/xml-utils/index-of-match.js"(exports, module) {
       function indexOfMatch(xml, pattern, startIndex) {
         const re = new RegExp(pattern);
         const match = re.exec(xml.slice(startIndex));
@@ -156,9 +156,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/index-of-match-end.js
+  // node_modules/xml-utils/index-of-match-end.js
   var require_index_of_match_end = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/index-of-match-end.js"(exports, module) {
+    "node_modules/xml-utils/index-of-match-end.js"(exports, module) {
       function indexOfMatchEnd(xml, pattern, startIndex) {
         const re = new RegExp(pattern);
         const match = re.exec(xml.slice(startIndex));
@@ -172,9 +172,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/count-substring.js
+  // node_modules/xml-utils/count-substring.js
   var require_count_substring = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/count-substring.js"(exports, module) {
+    "node_modules/xml-utils/count-substring.js"(exports, module) {
       function countSubstring(string, substring) {
         const pattern = new RegExp(substring, "g");
         const match = string.match(pattern);
@@ -185,9 +185,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tag-by-name.js
+  // node_modules/xml-utils/find-tag-by-name.js
   var require_find_tag_by_name = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tag-by-name.js"(exports, module) {
+    "node_modules/xml-utils/find-tag-by-name.js"(exports, module) {
       var indexOfMatch = require_index_of_match();
       var indexOfMatchEnd = require_index_of_match_end();
       var countSubstring = require_count_substring();
@@ -244,9 +244,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tags-by-name.js
+  // node_modules/xml-utils/find-tags-by-name.js
   var require_find_tags_by_name = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tags-by-name.js"(exports, module) {
+    "node_modules/xml-utils/find-tags-by-name.js"(exports, module) {
       var findTagByName = require_find_tag_by_name();
       function findTagsByName(xml, tagName, options) {
         const tags = [];
@@ -271,9 +271,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tags-by-path.js
+  // node_modules/xml-utils/find-tags-by-path.js
   var require_find_tags_by_path = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tags-by-path.js"(exports, module) {
+    "node_modules/xml-utils/find-tags-by-path.js"(exports, module) {
       var findTagsByName = require_find_tags_by_name();
       function findTagsByPath(xml, path, options) {
         const debug = options && options.debug || false;
@@ -312,9 +312,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tag-by-path.js
+  // node_modules/xml-utils/find-tag-by-path.js
   var require_find_tag_by_path = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/find-tag-by-path.js"(exports, module) {
+    "node_modules/xml-utils/find-tag-by-path.js"(exports, module) {
       var findTagsByPath = require_find_tags_by_path();
       function findTagByPath(xml, path, options) {
         const debug = options && options.debug || false;
@@ -329,9 +329,9 @@
     }
   });
 
-  // node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/get-attribute.js
+  // node_modules/xml-utils/get-attribute.js
   var require_get_attribute = __commonJS({
-    "node_modules/.pnpm/xml-utils@1.7.0/node_modules/xml-utils/get-attribute.js"(exports, module) {
+    "node_modules/xml-utils/get-attribute.js"(exports, module) {
       function getAttribute(tag, attributeName, options) {
         const debug = options && options.debug || false;
         if (debug)
@@ -357,9 +357,9 @@
     }
   });
 
-  // node_modules/.pnpm/wkt-parser@1.3.3/node_modules/wkt-parser/wkt.build.js
+  // node_modules/wkt-parser/wkt.build.js
   var require_wkt_build = __commonJS({
-    "node_modules/.pnpm/wkt-parser@1.3.3/node_modules/wkt-parser/wkt.build.js"(exports, module) {
+    "node_modules/wkt-parser/wkt.build.js"(exports, module) {
       "use strict";
       var NEUTRAL = 1;
       var KEYWORD = 2;
@@ -828,9 +828,9 @@
     }
   });
 
-  // node_modules/.pnpm/utm-utils@0.6.0/node_modules/utm-utils/src/getCodeFromEsriWKT.js
+  // node_modules/utm-utils/src/getCodeFromEsriWKT.js
   var require_getCodeFromEsriWKT = __commonJS({
-    "node_modules/.pnpm/utm-utils@0.6.0/node_modules/utm-utils/src/getCodeFromEsriWKT.js"(exports, module) {
+    "node_modules/utm-utils/src/getCodeFromEsriWKT.js"(exports, module) {
       function getCodeFromEsriWKT(esri_wkt) {
         if (!esri_wkt)
           return;
@@ -850,9 +850,9 @@
         }
       }
       if (typeof define === "function" && define.amd) {
-        return function() {
+        define(function() {
           return getCodeFromEsriWKT;
-        };
+        });
       }
       if (typeof module === "object") {
         module.exports = getCodeFromEsriWKT;
@@ -861,9 +861,9 @@
     }
   });
 
-  // node_modules/.pnpm/utm-utils@0.6.0/node_modules/utm-utils/src/getCodeFromProjString.js
+  // node_modules/utm-utils/src/getCodeFromProjString.js
   var require_getCodeFromProjString = __commonJS({
-    "node_modules/.pnpm/utm-utils@0.6.0/node_modules/utm-utils/src/getCodeFromProjString.js"(exports, module) {
+    "node_modules/utm-utils/src/getCodeFromProjString.js"(exports, module) {
       function getCodeFromProjString(proj) {
         if (proj.includes("+proj=utm") && proj.includes("+zone=")) {
           const parts = proj.split(" ");
@@ -881,9 +881,9 @@
         }
       }
       if (typeof define === "function" && define.amd) {
-        return function() {
+        define(function() {
           return getCodeFromProjString;
-        };
+        });
       }
       if (typeof module === "object") {
         module.exports = getCodeFromProjString;
@@ -918,9 +918,9 @@
     }
   });
 
-  // node_modules/.pnpm/wkt-crs@0.2.0/node_modules/wkt-crs/wkt-crs.js
+  // node_modules/wkt-crs/wkt-crs.js
   var require_wkt_crs = __commonJS({
-    "node_modules/.pnpm/wkt-crs@0.2.0/node_modules/wkt-crs/wkt-crs.js"(exports, module) {
+    "node_modules/wkt-crs/wkt-crs.js"(exports, module) {
       function sort(data, { keywords } = {}) {
         const keys = Object.keys(data).filter((k) => !/\d+/.test(k));
         if (!keywords) {
@@ -1119,9 +1119,9 @@
     }
   });
 
-  // node_modules/.pnpm/is-wkt@0.2.0/node_modules/is-wkt/is-wkt.js
+  // node_modules/is-wkt/is-wkt.js
   var require_is_wkt = __commonJS({
-    "node_modules/.pnpm/is-wkt@0.2.0/node_modules/is-wkt/is-wkt.js"(exports, module) {
+    "node_modules/is-wkt/is-wkt.js"(exports, module) {
       var keywords = [
         "PROJECTEDCRS",
         "PROJCRS",
@@ -1166,9 +1166,9 @@
     }
   });
 
-  // enums.js
+  // lib/enums.js
   var require_enums = __commonJS({
-    "enums.js"(exports, module) {
+    "lib/enums.js"(exports, module) {
       var FORMATS = {
         ESRI_WKT: "esriwkt",
         GEOSERVER: "geoserver",
@@ -1249,28 +1249,6 @@
     }
   });
 
-  // lib/enums.js
-  var require_enums2 = __commonJS({
-    "lib/enums.js"(exports, module) {
-      var FORMATS = {
-        ESRI_WKT: "esriwkt",
-        GEOSERVER: "geoserver",
-        MAPFILE: "mapfile",
-        MAPNIK: "mapnik",
-        OGC_GML: "gml",
-        OGC_XML: "xml",
-        OGC_WKT: "wkt",
-        POSTGIS: "postgis",
-        PROJ_4: "proj4",
-        PROJ_4_JS: "js",
-        PROJJSON: "PROJJSON"
-      };
-      module.exports = {
-        FORMATS
-      };
-    }
-  });
-
   // lib/data/esriwkt-mapfile-proj4.json
   var require_esriwkt_mapfile_proj4 = __commonJS({
     "lib/data/esriwkt-mapfile-proj4.json"(exports, module) {
@@ -1305,7 +1283,7 @@
       var normalize_proj4 = require_proj4();
       var getProjType = require_get_proj_type();
       var parseProj4JS = require_proj4js();
-      var { FORMATS } = require_enums2();
+      var { FORMATS } = require_enums();
       var data = require_esriwkt_mapfile_proj4();
       var getDefault = (fn) => fn.default || fn;
       var rows = [];
@@ -1342,9 +1320,11 @@
           console.log("[get-epsg-code] found:", found);
         return found.map((row) => row.epsg_code);
       }
-      var { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJ_4, PROJ_4_JS } = FORMATS;
+      var { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJJSON, PROJ_4, PROJ_4_JS } = FORMATS;
       function getEPSGCodes(input, options) {
         var debug = options && options.debug ? options.debug : false;
+        if (typeof input === "string")
+          input = input.trim();
         const dataType = getProjType(input, { debug });
         if (debug)
           console.log("dataType:", dataType);
@@ -1423,6 +1403,18 @@
             type: dataType,
             codes: [Number(input.substring(input.indexOf("values (") + 8, input.indexOf("EPSG") - 3).trim())]
           };
+        } else if (dataType === PROJJSON) {
+          const data2 = JSON.parse(input);
+          if (typeof data2.id === "object") {
+            if (data2.id.authority === "EPSG" || !("authority" in data2.id)) {
+              if (typeof data2.id.code === "number") {
+                return {
+                  type: dataType,
+                  codes: [data2.id.code]
+                };
+              }
+            }
+          }
         }
       }
       function getEPSGCode(input, options) {

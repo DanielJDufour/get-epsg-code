@@ -14,7 +14,12 @@
       document.getElementById("arbitrary-input").addEventListener("keyup", function(event) {
         const textValue = event.target.value;
         console.log("textValue:", [textValue]);
-        const result = getEPSGCodes(textValue, { debug: true });
+        let result;
+        try {
+          result = getEPSGCodes(textValue, { debug: true });
+        } catch (error) {
+          result = null;
+        }
         console.log("codes:", result?.codes);
         document.getElementById("result-data-type").textContent = result?.type || "";
         document.getElementById("result-text").textContent = result?.codes?.join(",") || "";

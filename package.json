@@ -36,7 +36,7 @@
     "test:main": "node ./test/test.js",
     "test:normalize": "node ./normalize/test",
     "test:parse": "node ./parse/test",
-    "test:html": "npm run build:web:dev && http-server",
+    "test:html": "npm run build:dev:web && http-server",
     "update-docs": "npm run test && npm run build:everything && npm run create-build-list"
   },
   "repository": {
