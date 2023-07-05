@@ -1,16 +1,20 @@
 const isWKT = require("is-wkt");
+const wktcrs = require("wkt-crs");
 
 const { FORMATS } = require("./enums.js");
 
-const { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJ_4, PROJ_4_JS, PROJJSON } = FORMATS;
+const { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJ_4, PROJ_4_JS, PROJJSON, WKT_2 } = FORMATS;
 
 function getProjType(input, { debug = false } = { debug: false }) {
   // check WKT
   if (input.startsWith("{") && input.includes("projjson")) {
     return PROJJSON;
   } else if (isWKT(input)) {
-    if (input.includes("AUTHORITY")) {
+    const parsed = wktcrs.parse(input.toUpperCase()).data;
+    if ("AUTHORITY" in (parsed.PROJCS || parsed.PROJCRS || parsed.GEOGCS || parsed.GEOGCRS)) {
       return OGC_WKT;
+    } else if ("ID" in parsed) {
+      return WKT_2;
     } else {
       // appears to be ESRI WKT
       return ESRI_WKT;

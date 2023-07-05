@@ -1,6 +1,6 @@
 # get-epsg-code: *beta*
-Gets the EPSG Code for Nearly All Coordinate Reference System Formats (including OGC WKT, ESRI WKT, GeoServer Config, Mapfile, Mapnik Config, PostGIS Statement, PROJJSON, PROJ String, and Proj4JS String)
-
+Gets the EPSG Code for Nearly All Coordinate Reference System Formats (including OGC WKT, WKT 2, ESRI WKT, GeoServer Config, Mapfile, Mapnik Config, PostGIS Statement, PROJJSON, PROJ String, and Proj4JS String)
+s
 # usage
 ```javascript
 const getEPSGCode = require("get-epsg-code");

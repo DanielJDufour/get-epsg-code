@@ -58,7 +58,7 @@ function lookup(input, dataType, debug = false) {
   return found.map(row => row.epsg_code);
 }
 
-const { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJJSON, PROJ_4, PROJ_4_JS } = FORMATS;
+const { ESRI_WKT, GEOSERVER, MAPFILE, MAPNIK, OGC_GML, OGC_XML, OGC_WKT, POSTGIS, PROJJSON, PROJ_4, PROJ_4_JS, WKT_2 } = FORMATS;
 
 function getEPSGCodes(input, options) {
   //console.log("starting get-epsg-code with", input, options);
@@ -77,6 +77,15 @@ function getEPSGCodes(input, options) {
       return {
         type: dataType,
         codes: [Number(authority.epsg || authority.EPSG)]
+      };
+    }
+  } else if (dataType === WKT_2) {
+    const parsed = getDefault(parseWKT)(input);
+    if (debug) console.log("parsed:", parsed);
+    if (typeof parsed.ID === "object" && typeof parsed.ID.EPSG === "number") {
+      return {
+        type: dataType,
+        codes: [parsed.ID.EPSG]
       };
     }
   } else if (dataType == ESRI_WKT) {

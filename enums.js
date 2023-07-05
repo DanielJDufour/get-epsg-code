@@ -9,7 +9,8 @@ const FORMATS = {
   POSTGIS: "postgis",
   PROJ_4: "proj4",
   PROJ_4_JS: "js",
-  PROJJSON: "PROJJSON"
+  PROJJSON: "PROJJSON",
+  WKT_2: "wkt2"
 };
 
 module.exports = {
