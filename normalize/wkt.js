@@ -18,7 +18,14 @@ function normalize_wkt(wkt, { debug = false } = { debug: false }) {
   // remove any extra spaces
   wkt = wkt.replace(/ +/g, " ");
 
+  // replace spaces with underscores
+  wkt = wkt.replace(/ /g, "_");
+
+  wkt = wkt.replace(`GEOGCS["GCS_`, `GEOGCS["`);
+
   wkt = wkt.replace(`DATUM["D_`, `DATUM["`);
+
+  wkt = wkt.replace("Gauss_Kruger", "GK");
 
   // reduce precision of decimal numbers to 15 digits
   wkt = wkt.replace(/\.\d{16,}/g, n => n.substr(0, 16));
